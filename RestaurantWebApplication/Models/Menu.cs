@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace RestaurantWebApplication.Models
 {
@@ -16,6 +17,7 @@ namespace RestaurantWebApplication.Models
         public string Description { get; set; }
         public decimal? Price { get; set; }
 
+        [DisplayName("Category")]
         public virtual Category CategoryNavigation { get; set; }
         public virtual ICollection<Sales> Sales { get; set; }
     }

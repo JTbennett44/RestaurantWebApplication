@@ -48,8 +48,8 @@ namespace RestaurantWebApplication.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
-            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId");
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address");
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "Item");
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "FullName");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace RestaurantWebApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "Item", ticket.MenuId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "FullName", ticket.StaffId);
             return View(ticket);
         }
 
@@ -84,8 +84,8 @@ namespace RestaurantWebApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "Item", ticket.MenuId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "FullName", ticket.StaffId);
             return View(ticket);
         }
 
@@ -121,8 +121,8 @@ namespace RestaurantWebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
-            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "Item", ticket.MenuId);
+            ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "FullName", ticket.StaffId);
             return View(ticket);
         }
 

@@ -47,7 +47,7 @@ namespace RestaurantWebApplication.Controllers
         // GET: Menus/Create
         public IActionResult Create()
         {
-            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryId");
+            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "Name");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace RestaurantWebApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menu.Category);
+            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "Name", menu.Category);
             return View(menu);
         }
 
@@ -81,7 +81,7 @@ namespace RestaurantWebApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menu.Category);
+            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "Name", menu.Category);
             return View(menu);
         }
 
@@ -117,7 +117,7 @@ namespace RestaurantWebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "CategoryId", menu.Category);
+            ViewData["Category"] = new SelectList(_context.Category, "CategoryId", "Name", menu.Category);
             return View(menu);
         }
 

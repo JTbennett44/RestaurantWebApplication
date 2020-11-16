@@ -47,7 +47,7 @@ namespace RestaurantWebApplication.Controllers
         // GET: Tables/Create
         public IActionResult Create()
         {
-            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "Address");
+            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "FullName");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace RestaurantWebApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "Address", tables.WaitStaff);
+            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "FullName", tables.WaitStaff);
             return View(tables);
         }
 
@@ -81,7 +81,7 @@ namespace RestaurantWebApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "Address", tables.WaitStaff);
+            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "FullName", tables.WaitStaff);
             return View(tables);
         }
 
@@ -117,7 +117,7 @@ namespace RestaurantWebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "Address", tables.WaitStaff);
+            ViewData["WaitStaff"] = new SelectList(_context.Staff, "StaffId", "FullName", tables.WaitStaff);
             return View(tables);
         }
 
