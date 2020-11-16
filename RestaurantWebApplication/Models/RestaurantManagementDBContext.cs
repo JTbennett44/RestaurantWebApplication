@@ -97,7 +97,9 @@ namespace RestaurantWebApplication.Models
 
             modelBuilder.Entity<Tables>(entity =>
             {
-                entity.HasKey(e => e.TableNumber);
+                entity.HasKey(e => e.TablesID);
+
+                entity.Property(e => e.Number).HasColumnName("Number");
 
                 entity.Property(e => e.Status).HasMaxLength(50);
 

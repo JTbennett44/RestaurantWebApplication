@@ -6,7 +6,9 @@ namespace RestaurantWebApplication.Models
 {
     public partial class Tables
     {
-        public int TableNumber { get; set; }
+        public int TablesID { get; set; }
+        [DisplayName("Table Number")]
+        public int Number { get; set; }
         public string Status { get; set; }
         [DisplayName("Waiter")]
         public int WaitStaff { get; set; }

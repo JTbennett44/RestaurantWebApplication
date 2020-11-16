@@ -35,7 +35,7 @@ namespace RestaurantWebApplication.Controllers
 
             var tables = await _context.Tables
                 .Include(t => t.WaitStaffNavigation)
-                .FirstOrDefaultAsync(m => m.TableNumber == id);
+                .FirstOrDefaultAsync(m => m.TablesID == id);
             if (tables == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TableNumber,Status,WaitStaff")] Tables tables)
+        public async Task<IActionResult> Create([Bind("TablesID,Number,Status,WaitStaff")] Tables tables)
         {
             if (ModelState.IsValid)
             {
@@ -90,9 +90,9 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TableNumber,Status,WaitStaff")] Tables tables)
+        public async Task<IActionResult> Edit(int id, [Bind("TablesID,Number,Status,WaitStaff")] Tables tables)
         {
-            if (id != tables.TableNumber)
+            if (id != tables.TablesID)
             {
                 return NotFound();
             }
@@ -106,7 +106,7 @@ namespace RestaurantWebApplication.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TablesExists(tables.TableNumber))
+                    if (!TablesExists(tables.TablesID))
                     {
                         return NotFound();
                     }
@@ -131,7 +131,7 @@ namespace RestaurantWebApplication.Controllers
 
             var tables = await _context.Tables
                 .Include(t => t.WaitStaffNavigation)
-                .FirstOrDefaultAsync(m => m.TableNumber == id);
+                .FirstOrDefaultAsync(m => m.TablesID == id);
             if (tables == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace RestaurantWebApplication.Controllers
 
         private bool TablesExists(int id)
         {
-            return _context.Tables.Any(e => e.TableNumber == id);
+            return _context.Tables.Any(e => e.TablesID == id);
         }
     }
 }
