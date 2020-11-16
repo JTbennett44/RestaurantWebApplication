@@ -4,7 +4,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="btn">
+                    <a class="btn-link text-dark" asp-area="" asp-controller="Menus" asp-action="Index">Menu</a>
+                </li>
+                <li class="btn">
+                    <a class="btn-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1>Menu</h1>
 
 <p>
     <a asp-action="Create">Create New</a>

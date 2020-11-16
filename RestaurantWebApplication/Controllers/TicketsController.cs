@@ -21,7 +21,7 @@ namespace RestaurantWebApplication.Controllers
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-            var restaurantManagementDBContext = _context.Ticket.Include(t => t.Staff);
+            var restaurantManagementDBContext = _context.Ticket.Include(t => t.Menu).Include(t => t.Staff);
             return View(await restaurantManagementDBContext.ToListAsync());
         }
 
@@ -34,6 +34,7 @@ namespace RestaurantWebApplication.Controllers
             }
 
             var ticket = await _context.Ticket
+                .Include(t => t.Menu)
                 .Include(t => t.Staff)
                 .FirstOrDefaultAsync(m => m.TicketId == id);
             if (ticket == null)
@@ -47,6 +48,7 @@ namespace RestaurantWebApplication.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId");
             ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address");
             return View();
         }
@@ -56,7 +58,7 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TicketId,Date,PaymentMethod,StaffId,TableNumber")] Ticket ticket)
+        public async Task<IActionResult> Create([Bind("TicketId,MenuId,Date,PaymentMethod,StaffId,TableNumber")] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +66,7 @@ namespace RestaurantWebApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
             return View(ticket);
         }
@@ -81,6 +84,7 @@ namespace RestaurantWebApplication.Controllers
             {
                 return NotFound();
             }
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
             return View(ticket);
         }
@@ -90,7 +94,7 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TicketId,Date,PaymentMethod,StaffId,TableNumber")] Ticket ticket)
+        public async Task<IActionResult> Edit(int id, [Bind("TicketId,MenuId,Date,PaymentMethod,StaffId,TableNumber")] Ticket ticket)
         {
             if (id != ticket.TicketId)
             {
@@ -117,6 +121,7 @@ namespace RestaurantWebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MenuId"] = new SelectList(_context.Menu, "MenuId", "MenuId", ticket.MenuId);
             ViewData["StaffId"] = new SelectList(_context.Staff, "StaffId", "Address", ticket.StaffId);
             return View(ticket);
         }
@@ -130,6 +135,7 @@ namespace RestaurantWebApplication.Controllers
             }
 
             var ticket = await _context.Ticket
+                .Include(t => t.Menu)
                 .Include(t => t.Staff)
                 .FirstOrDefaultAsync(m => m.TicketId == id);
             if (ticket == null)

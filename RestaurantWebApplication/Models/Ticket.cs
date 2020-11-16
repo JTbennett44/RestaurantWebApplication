@@ -11,12 +11,14 @@ namespace RestaurantWebApplication.Models
         }
 
         public int TicketId { get; set; }
+        public int MenuId { get; set; }
         public DateTime? Date { get; set; }
         public string PaymentMethod { get; set; }
         public int StaffId { get; set; }
         public int? TableNumber { get; set; }
 
         public virtual Staff Staff { get; set; }
+        public virtual Menu Menu { get; set; }
         public virtual ICollection<Sales> Sales { get; set; }
     }
 }
