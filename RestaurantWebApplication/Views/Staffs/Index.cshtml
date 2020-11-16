@@ -4,7 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="btn">
+                    <a class="btn-link text-dark" asp-area="" asp-controller="Staffs" asp-action="Index">Staff</a>
+                </li>
+                <li class="btn">
+                    <a class="btn-link text-dark" asp-area="" asp-controller="Menus" asp-action="Index">Menu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<h1>Staff</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -28,7 +44,7 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SecurityLevel)
+                @Html.DisplayNameFor(model => model.Position)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HireDate)
@@ -55,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SecurityLevel)
+                @Html.DisplayFor(modelItem => item.Position)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HireDate)

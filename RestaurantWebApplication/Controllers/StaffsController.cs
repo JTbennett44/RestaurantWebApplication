@@ -53,7 +53,7 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StaffId,FirstName,LastName,Gender,DoB,Address,SecurityLevel,HireDate")] Staff staff)
+        public async Task<IActionResult> Create([Bind("StaffId,FirstName,LastName,Gender,DoB,Address,Position,HireDate")] Staff staff)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace RestaurantWebApplication.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StaffId,FirstName,LastName,Gender,DoB,Address,SecurityLevel,HireDate")] Staff staff)
+        public async Task<IActionResult> Edit(int id, [Bind("StaffId,FirstName,LastName,Gender,DoB,Address,Position,HireDate")] Staff staff)
         {
             if (id != staff.StaffId)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace RestaurantWebApplication.Models
 {
@@ -7,8 +8,10 @@ namespace RestaurantWebApplication.Models
     {
         public int TableNumber { get; set; }
         public string Status { get; set; }
+        [DisplayName("Waiter")]
         public int WaitStaff { get; set; }
 
+        [DisplayName("Waiter")]
         public virtual Staff WaitStaffNavigation { get; set; }
     }
 }

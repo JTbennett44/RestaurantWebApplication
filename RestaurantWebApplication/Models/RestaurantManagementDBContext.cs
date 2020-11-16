@@ -92,7 +92,7 @@ namespace RestaurantWebApplication.Models
 
                 entity.Property(e => e.LastName).HasMaxLength(50);
 
-                entity.Property(e => e.SecurityLevel).HasMaxLength(50);
+                entity.Property(e => e.Position).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Tables>(entity =>

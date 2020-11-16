@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantWebApplication.Models;
 
 namespace RestaurantWebApplication.Migrations
 {
     [DbContext(typeof(RestaurantManagementDBContext))]
-    partial class RestaurantManagementDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201116203915_staff")]
+    partial class staff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

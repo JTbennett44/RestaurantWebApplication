@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace RestaurantWebApplication.Models
 {
@@ -13,8 +14,11 @@ namespace RestaurantWebApplication.Models
         public int TicketId { get; set; }
         public int MenuId { get; set; }
         public DateTime? Date { get; set; }
+        [DisplayName("Payment Method")]
         public string PaymentMethod { get; set; }
+        [DisplayName("Staff")]
         public int StaffId { get; set; }
+        [DisplayName("Table Number")]
         public int? TableNumber { get; set; }
 
         public virtual Staff Staff { get; set; }
