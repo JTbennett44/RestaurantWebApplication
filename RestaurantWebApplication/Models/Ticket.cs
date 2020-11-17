@@ -12,6 +12,7 @@ namespace RestaurantWebApplication.Models
         }
 
         public int TicketId { get; set; }
+        [DisplayName("Menu Item")]
         public int MenuId { get; set; }
         public DateTime? Date { get; set; }
         [DisplayName("Payment Method")]
