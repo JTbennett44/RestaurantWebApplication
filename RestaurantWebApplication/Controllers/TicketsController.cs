@@ -62,6 +62,7 @@ namespace RestaurantWebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
+                ticket.Date = DateTime.Now;
                 _context.Add(ticket);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

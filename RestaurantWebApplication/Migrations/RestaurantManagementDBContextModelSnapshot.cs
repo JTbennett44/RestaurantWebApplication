@@ -56,7 +56,7 @@ namespace RestaurantWebApplication.Migrations
                         .HasMaxLength(50);
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(3, 2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.HasKey("MenuId");
 

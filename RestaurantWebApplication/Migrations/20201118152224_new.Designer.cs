@@ -10,8 +10,8 @@ using RestaurantWebApplication.Models;
 namespace RestaurantWebApplication.Migrations
 {
     [DbContext(typeof(RestaurantManagementDBContext))]
-    [Migration("20201116193810_salesGone")]
-    partial class salesGone
+    [Migration("20201118152224_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace RestaurantWebApplication.Migrations
                         .HasMaxLength(50);
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(3, 2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.HasKey("MenuId");
 
@@ -125,7 +125,7 @@ namespace RestaurantWebApplication.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("SecurityLevel")
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -136,10 +136,14 @@ namespace RestaurantWebApplication.Migrations
 
             modelBuilder.Entity("RestaurantWebApplication.Models.Tables", b =>
                 {
-                    b.Property<int>("TableNumber")
+                    b.Property<int>("TablesID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Number")
+                        .HasColumnName("Number")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(50)")
@@ -148,7 +152,7 @@ namespace RestaurantWebApplication.Migrations
                     b.Property<int>("WaitStaff")
                         .HasColumnType("int");
 
-                    b.HasKey("TableNumber");
+                    b.HasKey("TablesID");
 
                     b.HasIndex("WaitStaff");
 

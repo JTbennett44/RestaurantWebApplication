@@ -9,6 +9,7 @@ namespace RestaurantWebApplication.Models
         public Ticket()
         {
             Sales = new HashSet<Sales>();
+            Date = DateTime.Now;
         }
 
         public int TicketId { get; set; }

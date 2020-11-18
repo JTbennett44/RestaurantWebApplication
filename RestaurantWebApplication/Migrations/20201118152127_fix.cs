@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestaurantWebApplication.Migrations
 {
-    public partial class init : Migration
+    public partial class fix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace RestaurantWebApplication.Migrations
                     Gender = table.Column<string>(unicode: false, fixedLength: true, maxLength: 10, nullable: true),
                     DoB = table.Column<DateTime>(type: "datetime", nullable: true),
                     Address = table.Column<string>(maxLength: 50, nullable: false),
-                    SecurityLevel = table.Column<string>(maxLength: 50, nullable: true),
+                    Position = table.Column<string>(maxLength: 50, nullable: true),
                     HireDate = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
@@ -48,7 +48,7 @@ namespace RestaurantWebApplication.Migrations
                     Item = table.Column<string>(maxLength: 50, nullable: true),
                     Category = table.Column<int>(nullable: false),
                     Description = table.Column<string>(maxLength: 50, nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(3, 2)", nullable: true)
+                    Price = table.Column<decimal>(type: "decimal(6, 2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,14 +65,15 @@ namespace RestaurantWebApplication.Migrations
                 name: "Tables",
                 columns: table => new
                 {
-                    TableNumber = table.Column<int>(nullable: false)
+                    TablesID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Number = table.Column<int>(nullable: false),
                     Status = table.Column<string>(maxLength: 50, nullable: true),
                     WaitStaff = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tables", x => x.TableNumber);
+                    table.PrimaryKey("PK_Tables", x => x.TablesID);
                     table.ForeignKey(
                         name: "FK_Tables_Staff",
                         column: x => x.WaitStaff,
@@ -87,6 +88,7 @@ namespace RestaurantWebApplication.Migrations
                 {
                     TicketID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MenuId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(type: "datetime", nullable: true),
                     PaymentMethod = table.Column<string>(maxLength: 50, nullable: true),
                     StaffID = table.Column<int>(nullable: false),
@@ -95,6 +97,12 @@ namespace RestaurantWebApplication.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ticket", x => x.TicketID);
+                    table.ForeignKey(
+                        name: "FK_Ticket_Menu_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menu",
+                        principalColumn: "MenuID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ticket_Staff",
                         column: x => x.StaffID,
@@ -150,6 +158,11 @@ namespace RestaurantWebApplication.Migrations
                 column: "WaitStaff");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ticket_MenuId",
+                table: "Ticket",
+                column: "MenuId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Ticket_StaffID",
                 table: "Ticket",
                 column: "StaffID");
@@ -164,16 +177,16 @@ namespace RestaurantWebApplication.Migrations
                 name: "Tables");
 
             migrationBuilder.DropTable(
-                name: "Menu");
-
-            migrationBuilder.DropTable(
                 name: "Ticket");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Menu");
 
             migrationBuilder.DropTable(
                 name: "Staff");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }

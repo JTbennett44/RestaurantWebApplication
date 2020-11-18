@@ -39,7 +39,7 @@ namespace RestaurantWebApplication.Models
 
                 entity.Property(e => e.Item).HasMaxLength(50);
 
-                entity.Property(e => e.Price).HasColumnType("decimal(3, 2)");
+                entity.Property(e => e.Price).HasColumnType("decimal(6, 2)");
 
                 entity.HasOne(d => d.CategoryNavigation)
                     .WithMany(p => p.Menu)
@@ -126,6 +126,7 @@ namespace RestaurantWebApplication.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Ticket_Staff");
             });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

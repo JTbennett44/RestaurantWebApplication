@@ -10,8 +10,8 @@ using RestaurantWebApplication.Models;
 namespace RestaurantWebApplication.Migrations
 {
     [DbContext(typeof(RestaurantManagementDBContext))]
-    [Migration("20201116190342_initial")]
-    partial class initial
+    [Migration("20201118152127_fix")]
+    partial class fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace RestaurantWebApplication.Migrations
                         .HasMaxLength(50);
 
                     b.Property<decimal?>("Price")
-                        .HasColumnType("decimal(3, 2)");
+                        .HasColumnType("decimal(6, 2)");
 
                     b.HasKey("MenuId");
 
@@ -125,7 +125,7 @@ namespace RestaurantWebApplication.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("SecurityLevel")
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
@@ -136,10 +136,14 @@ namespace RestaurantWebApplication.Migrations
 
             modelBuilder.Entity("RestaurantWebApplication.Models.Tables", b =>
                 {
-                    b.Property<int>("TableNumber")
+                    b.Property<int>("TablesID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Number")
+                        .HasColumnName("Number")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(50)")
@@ -148,7 +152,7 @@ namespace RestaurantWebApplication.Migrations
                     b.Property<int>("WaitStaff")
                         .HasColumnType("int");
 
-                    b.HasKey("TableNumber");
+                    b.HasKey("TablesID");
 
                     b.HasIndex("WaitStaff");
 
@@ -166,6 +170,9 @@ namespace RestaurantWebApplication.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PaymentMethod")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
@@ -178,6 +185,8 @@ namespace RestaurantWebApplication.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("TicketId");
+
+                    b.HasIndex("MenuId");
 
                     b.HasIndex("StaffId");
 
@@ -219,6 +228,12 @@ namespace RestaurantWebApplication.Migrations
 
             modelBuilder.Entity("RestaurantWebApplication.Models.Ticket", b =>
                 {
+                    b.HasOne("RestaurantWebApplication.Models.Menu", "Menu")
+                        .WithMany()
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RestaurantWebApplication.Models.Staff", "Staff")
                         .WithMany("Ticket")
                         .HasForeignKey("StaffId")
