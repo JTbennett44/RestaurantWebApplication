@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantWebApplication.Models
 {
@@ -18,10 +19,12 @@ namespace RestaurantWebApplication.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
         public string Gender { get; set; }
+        [DataType(DataType.Date)]
         [DisplayName("Date of Birth")]
         public DateTime? DoB { get; set; }
         public string Address { get; set; }
         public string Position { get; set; }
+        [DataType(DataType.Date)]
         [DisplayName("Hire Date")]
         public DateTime? HireDate { get; set; }
 
