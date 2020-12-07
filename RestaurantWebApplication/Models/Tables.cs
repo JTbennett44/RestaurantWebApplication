@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantWebApplication.Models
 {
@@ -8,7 +9,10 @@ namespace RestaurantWebApplication.Models
     {
         public int TablesID { get; set; }
         [DisplayName("Table Number")]
+        [Required()]
+        [Range(0,100)]
         public int Number { get; set; }
+        [Required()]
         public string Status { get; set; }
         [DisplayName("Waiter")]
         public int WaitStaff { get; set; }

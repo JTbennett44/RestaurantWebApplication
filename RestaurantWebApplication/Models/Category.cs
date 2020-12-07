@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantWebApplication.Models
 {
@@ -11,6 +12,7 @@ namespace RestaurantWebApplication.Models
         }
 
         public int CategoryId { get; set; }
+        [Required()]
         public string Name { get; set; }
 
         public virtual ICollection<Menu> Menu { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantWebApplication.Models
 {
@@ -17,6 +18,7 @@ namespace RestaurantWebApplication.Models
         public int MenuId { get; set; }
         public DateTime? Date { get; set; }
         [DisplayName("Payment Method")]
+        [Required()]
         public string PaymentMethod { get; set; }
         [DisplayName("Staff")]
         public int StaffId { get; set; }

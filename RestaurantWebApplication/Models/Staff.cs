@@ -22,6 +22,7 @@ namespace RestaurantWebApplication.Models
         [DataType(DataType.Date)]
         [DisplayName("Date of Birth")]
         public DateTime? DoB { get; set; }
+        [Required()]
         public string Address { get; set; }
         public string Position { get; set; }
         [DataType(DataType.Date)]
