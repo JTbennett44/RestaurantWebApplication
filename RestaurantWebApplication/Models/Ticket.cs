@@ -22,6 +22,7 @@ namespace RestaurantWebApplication.Models
         public string PaymentMethod { get; set; }
         [DisplayName("Staff")]
         public int StaffId { get; set; }
+        [Required()]
         [DisplayName("Table Number")]
         public int? TableNumber { get; set; }
 

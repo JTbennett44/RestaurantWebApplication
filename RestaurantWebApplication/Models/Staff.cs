@@ -14,17 +14,22 @@ namespace RestaurantWebApplication.Models
         }
 
         public int StaffId { get; set; }
+        [Required()]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
         [DisplayName("Last Name")]
         public string LastName { get; set; }
+        [Required()]
         public string Gender { get; set; }
         [DataType(DataType.Date)]
         [DisplayName("Date of Birth")]
+        [Required()]
         public DateTime? DoB { get; set; }
         [Required()]
         public string Address { get; set; }
+        [Required()]
         public string Position { get; set; }
+        [Required()]
         [DataType(DataType.Date)]
         [DisplayName("Hire Date")]
         public DateTime? HireDate { get; set; }
